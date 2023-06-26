@@ -22,7 +22,7 @@ def extract_movie_details(movie_link):
         title = None
         date = None
 
-        movie_data = movie_soup.find('div', attrs={'class': 'sc-52d569c6-0 kNzJA-D'})
+        movie_data = movie_soup.find('div', attrs={'class': 'sc-385ac629-3 kRUqXl'})
         if movie_data is not None:
             title = movie_data.find('h1').get_text()
             date = movie_data.find('a', attrs={'class': 'ipc-link ipc-link--baseAlt ipc-link--inherit-color'}).get_text().strip()
@@ -30,8 +30,8 @@ def extract_movie_details(movie_link):
         rating = movie_soup.find('span', attrs={'class': 'sc-bde20123-1 iZlgcd'}).get_text() if movie_soup.find(
             'span', attrs={'class': 'sc-bde20123-1 iZlgcd'}) else None
 
-        plot_text = movie_soup.find('span', attrs={'class': 'sc-5f699a2-2 cxqNYC'}).get_text().strip() if movie_soup.find(
-            'span', attrs={'class': 'sc-5f699a2-2 cxqNYC'}) else None
+        plot_text = movie_soup.find('span', attrs={'class': 'sc-cd57914c-2 cXtXlS'}).get_text().strip() if movie_soup.find(
+            'span', attrs={'class': 'sc-cd57914c-2 cXtXlS'}) else None
 
         with open('movies.csv', mode='a') as file:
             movie_writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
