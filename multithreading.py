@@ -30,8 +30,8 @@ def extract_movie_details(movie_link):
         rating = movie_soup.find('span', attrs={'class': 'sc-bde20123-1 iZlgcd'}).get_text() if movie_soup.find(
             'span', attrs={'class': 'sc-bde20123-1 iZlgcd'}) else None
 
-        plot_text = movie_soup.find('span', attrs={'class': 'sc-cd57914c-2 cXtXlS'}).get_text().strip() if movie_soup.find(
-            'span', attrs={'class': 'sc-cd57914c-2 cXtXlS'}) else None
+        plot_text = movie_soup.find('span', attrs={'class': 'sc-6a7933c5-1 fPmRoa'}).get_text().strip() if movie_soup.find(
+            'span', attrs={'class': 'sc-6a7933c5-1 fPmRoa'}) else None
 
         with open('movies.csv', mode='a') as file:
             movie_writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
