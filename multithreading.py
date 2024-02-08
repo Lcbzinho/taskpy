@@ -22,10 +22,10 @@ def extract_movie_details(movie_link):
         title = None
         date = None
         # ajustar o trecho abaixo de acordo com o site de um filme, exemplo : https://www.imdb.com/title/tt15398776/?ref_=chtmvm_t_1, usar inspecionar elemento para definir os elementos.
-        movie_data = movie_soup.find('div', attrs={'class': 'sc-e226b0e3-3 dwkouE'})
+        movie_data = movie_soup.find('div', attrs={'sc-491663c0-3 bdjVSf'})
         if movie_data is not None:
-            # h1 deve ser o título do nome do filme
-            title = movie_data.find('h1').get_text()
+            # title é a span com classe de teste, é necessário acessadr data-testid de h1 para ter seu acesso.
+            title = movie_data.find('h1', attrs={'data-testid': 'hero__pageTitle'}).find('span').getText()
             # date deve ser apenas a classe que representa o ano.
             date = movie_data.find('a', attrs={'class': 'ipc-link ipc-link--baseAlt ipc-link--inherit-color'}).get_text().strip()
         # rating é a nota do filme, por exemplo, 8.6.
