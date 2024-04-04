@@ -22,18 +22,17 @@ def extract_movie_details(movie_link):
         title = None
         date = None
         # ajustar o trecho abaixo de acordo com o site de um filme, exemplo : https://www.imdb.com/title/tt15398776/?ref_=chtmvm_t_1, usar inspecionar elemento para definir os elementos.
-        movie_data = movie_soup.find('div', attrs={'sc-491663c0-3 bdjVSf'})
+        movie_data = movie_soup.find('div', attrs={'sc-4e4cc5f9-3 dDRspk'})
         if movie_data is not None:
             # title é a span com classe de teste, é necessário acessadr data-testid de h1 para ter seu acesso.
             title = movie_data.find('h1', attrs={'data-testid': 'hero__pageTitle'}).find('span').getText()
             # date deve ser apenas a classe que representa o ano.
             date = movie_data.find('a', attrs={'class': 'ipc-link ipc-link--baseAlt ipc-link--inherit-color'}).get_text().strip()
         # rating é a nota do filme, por exemplo, 8.6.
-        rating = movie_soup.find('span', attrs={'sc-bde20123-1 cMEQkK'}).get_text() if movie_soup.find(
-            'span', attrs={'sc-bde20123-1 cMEQkK'}) else None
+        rating = movie_soup.find('div', attrs={'data-testid':'hero-rating-bar__aggregate-rating__score'}).get_text() if movie_soup.find('div', attrs={'data-testid':'hero-rating-bar__aggregate-rating__score'}) else None
         # plot é o texto de sinopse do filme
-        plot_text = movie_soup.find('span', attrs={'class': 'sc-466bb6c-2 chnFO'}).get_text().strip() if movie_soup.find(
-            'span', attrs={'class': 'sc-466bb6c-2 chnFO'}) else None
+        plot_text = movie_soup.find('span', attrs={'data-testid': 'plot-xl'}).get_text().strip() if movie_soup.find(
+            'span', attrs={'data-testid': 'plot-xl'}) else None
 
         with open('movies.csv', mode='a') as file:
             movie_writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
