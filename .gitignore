@@ -1,0 +1,5 @@
+.venv/
+__pycache__/
+*.jsonl
+movies.csv
+movies_async.csv
